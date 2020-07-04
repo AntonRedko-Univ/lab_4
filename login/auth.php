@@ -5,20 +5,12 @@ $login = $_POST["login"];
 $password = $_POST["password"];
 
 
-$check_user = mysqli_query($link, "SELECT * FROM `users` WHERE `login` = '$login' AND `password` = '$password' ");
+$check_user = mysqli_query($link, "SELECT * FROM `users` WHERE `login` = '" . $login . "' AND `password` = '" . $password . "' ");
 $_SESSION['check_user'] = $check_user;
 $user = mysqli_fetch_assoc($check_user);
 
 
-$_SESSION['user'] = [
-    "id" => $user['id'],
-    "name" => $user['name'],
-    "surname" => $user['surname'],
-    "login" => $user['login'],
-    "password" => $user['password'],
-    "role" => $user['role'],
-    "lang" => $user['lang']
-];
+$_SESSION['user'] = array("id" => $user['id'], "name" => $user['name'], "surname" => $user['surname'], "login" => $user['login'], "password" => $user['password'], "role" => $user['role'], "lang" => $user['lang']);
 
 
 if (mysqli_num_rows($check_user) > 0){
